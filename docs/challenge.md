@@ -18,18 +18,18 @@ Checked 2026-10-04 against [landing page](https://dev.to/challenges/kaggle-2026-
 
 Implication: emphasize a specific practical question, controlled perturbations, understandable failure cases, honest uncertainty, and what a developer should do differently after reading the results.
 
-## Eligibility and integrity gates for Emi
+## Eligibility and integrity gates (entrant must confirm)
 
 - 18+ AND legal age of majority where applicable; eligible residency, active DEV account in good standing, active email and Internet access.
-- General rules exclude residents of Afghanistan, Belarus, Central African Republic, Cuba, Equatorial Guinea, Iran, Iraq, Kosovo, Libya, Myanmar, North Korea, Russia, South Sudan, Sudan, Syria, Tanzania, Venezuela and Yemen, and other export-control/restricted-party cases. Also check employer/sponsor relationship restrictions directly in the official rules. No eligibility determination about Emi has been made.
+- General rules exclude residents of Afghanistan, Belarus, Central African Republic, Cuba, Equatorial Guinea, Iran, Iraq, Kosovo, Libya, Myanmar, North Korea, Russia, South Sudan, Sudan, Syria, Tanzania, Venezuela and Yemen, and other export-control/restricted-party cases. Also check employer/sponsor relationship restrictions directly in the official rules. No eligibility determination has been made here.
 - Entry development must have started within the entry period. This new project starts October 4. Reused libraries are fine; do not present pre-existing benchmark work as an original new entry.
 - Original work; significant adaptations where reusing prior work; credit nontrivial sources, datasets and code. AI assistance is allowed. Write in English for prize eligibility (non-English is badge-eligible only per FAQ).
-- Entrant retains ownership but grants the sponsor the license described in the general rules; Emi must review the full terms before entering.
+- Entrant retains ownership but grants the sponsor the license described in the general rules; The entrant must review the full terms before entering.
 - No purchase necessary. Do not infer an API spend requirement.
 
 ## Submission completion checklist
 
-- [ ] Emi confirms eligibility and accepts the current official rules.
+- [ ] Entrant confirms eligibility and accepts the current official rules.
 - [ ] One original benchmark exists as a Kaggle Benchmark entity, not merely a notebook/dataset/repo.
 - [ ] Tasks have actual model runs and inspectable results; no placeholders or invented measurements.
 - [ ] Benchmark URL is publicly accessible in a signed-out browser; task assets/results needed to understand it are accessible too.

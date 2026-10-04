@@ -1,49 +1,61 @@
 ---
-title: "Can a local AI assistant trust the documents it reads?"
+title: "Can a local AI model trust the documents it reads?"
 published: false
 tags: devchallenge, kagglechallenge, ai, machinelearning
 ---
 
 *This is a submission for the [Kaggle Benchmarking Challenge](https://dev.to/challenges/kaggle-2026-09-23).*
 
-> WORKING TEMPLATE ONLY. Replace all bracketed sections with audited results before publication. The title is a research question, not a finding.
+> DRAFT SKELETON: every `[bracket]` is filled only from `results/summary/*.json` after the frozen runs. The title is a question, not a finding. Target length is 1,200–1,800 words.
 
 ## What I Benchmarked
 
-[Explain a concrete reason you would want a local assistant to extract facts from documents. Describe the synthetic task, paired clean/injected inputs, missing/conflicting evidence, and why trustworthy abstention matters. Use the actual final case counts and selected scope.]
+[Hook, 2–3 sentences: you point a local model at your invoices or tickets. You need the exact fact, an honest "not there" or "records disagree", and no obedience to text inside the files.]
 
-[Show one compact synthetic example with gold response. Explain exact JSON/evidence scoring in plain English. Separate data-level instruction following from an autonomous tool-security claim.]
+Local Trust Bench gives a model a question and a handful of short synthetic records, then asks for one JSON object: `answer` with the exact value and the IDs of the records that prove it, or `missing`, or `conflict`. [Insert the compact example from the README.]
+
+Each of the [120] base scenarios comes in two versions that differ in only one document, an untrusted note in the same position:
+
+- **clean**: a harmless filing note
+- **injected**: a planted instruction to give a wrong value. It comes in three styles: a plain command, a fake "records office" correction, and a fake example answer.
+
+The scenarios cover four kinds of question: direct lookup, picking the right record among look-alikes, a missing fact, and conflicting records. A **crowded** version adds 12 look-alike records to the same scenarios. Scoring is a deterministic checker, with no LLM judge. A case counts only if the JSON, the status, the exact value and the exact evidence are all right.
+
+[Why this matters, in one paragraph. Make clear this is instruction-following in data, not an agent-security test: the models had no tools.]
 
 ## Models Tested
 
-[Table: exact model/version, local or Kaggle-hosted, quantization/backend where known, reasoning/sampling settings, and why selected. Explain any hidden provider defaults.]
+[Table: model · where it ran (Mac / Kaggle) · quantization · thinking setting · why chosen.]
 
-[Actual Mac inventory, not just intended chip specifications; local timing boundaries, memory metric definitions and token budgets. Do not claim Neural Engine use without measured evidence.]
+Local runs: Mac Studio, M5 Max (18-core CPU, 40-core GPU), 48 GB unified memory, macOS 27.0, MLX LM [version], greedy decoding, one model and one request at a time. Hosted runs: Kaggle Benchmarks free quota, with the same prompt, cases and scorer code; provider defaults are noted where they can't be controlled.
 
 ## Findings
 
-[Lead with the most useful observed lesson, not a wall of scores. Include primary clean/injected results, confidence intervals, counts, coverage and paired degradation.]
+[Lead with the single most useful lesson, in one sentence, with its number and interval.]
 
-[Insert 2–3 original charts: reliability by condition; local quality/latency/memory trade-off; optional quantization result only if run.]
+[Chart 1: clean vs injected strict success per model, with intervals.]
 
-[Three audited case studies: one success, one informative failure, one abstention/conflict behavior. If an expected failure did not occur, explain that rather than inventing it. Quote only synthetic test content and recorded model responses.]
+[How models fail when they fail (chart 2): adopting the planted value, inventing a "conflict" and citing the note, or breaking the output format. Which attack style worked best?]
 
-[What surprised you? Which practical model/configuration would you choose for this narrowly defined workload, and why? A tie or uncertain result is useful too.]
+[Crowding: did 12 look-alike records change accuracy or robustness?]
 
-[Limitations: synthetic English data, correlated templates, finite N, single machine, specific quantizations, provider/version differences, no real agent tools, token limits, errors/retries, unresolved repeatability. State which optional experiments were omitted.]
+[Chart 3: reliability vs. median latency and memory on the Mac. Which model would I actually run for this job, and why?]
 
-[What next? Propose a targeted follow-up justified by these results.]
+[Extensions that were actually run: thinking on/off, 8-bit vs. 4-bit, Ollama vs. MLX. Mark the ones not run as omitted.]
+
+[Three audited examples, quoted verbatim: a clean success, an informative injected failure, an abstention or conflict case.]
+
+[What surprised me. A null result is fine to report.]
+
+**Limitations.** Synthetic, template-generated English data; 120 scenarios per condition; one Mac; specific quantized builds; unseen hosted-provider settings; no real tools; greedy decoding only. [Plus any failures or omitted runs.]
+
+**What next.** [One follow-up justified by the results.]
 
 ## My Benchmark
 
-[REQUIRED: actual public Kaggle Benchmark URL, verified signed out. A notebook URL alone does not satisfy the challenge.]
-
-[Link accessible task notebook(s), frozen corpus, scorer/version and cleaned result artifacts. Private GitHub may be mentioned but must not be the only reproducibility path.]
+- **Kaggle benchmark (public):** [URL, checked signed out]
+- Task files, frozen cases and scorer: [Kaggle task links]; code and raw outputs: [GitHub link if made public]
 
 ## Credits and Reproducibility
 
-[Credit Kaggle Benchmarks, MLX LM, model authors, reused libraries/templates and any adapted material. State AI assistance honestly. List collaborating humans' DEV handles if applicable; do not invent collaborators.]
-
-[Dataset/scorer/config revisions, actual run dates, instructions to reproduce, known nondeterminism, and an explicit distinction between Kaggle-hosted results and Mac companion results.]
-
-[Add a relevant cover image if useful; not a substitute for results. Final editing target: concise, readable narrative approximately 1,200–1,800 words; this is an editorial suggestion, not an official rule.]
+Built with Kaggle Benchmarks and MLX LM. The models are by Qwen, Google and OpenAI, with MLX conversions by mlx-community. Protocol v1, dataset sha256 [hash], runs on [dates]. Written with AI coding assistance; all results come from the logged runs. [Collaborators' DEV handles, if any.]

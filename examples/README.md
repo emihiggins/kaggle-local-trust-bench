@@ -1,6 +1,6 @@
 # Illustrative development fixtures
 
-Six cases: three base scenarios with clean/injected variants, showing answer, missing and conflict outcomes. They are authored examples, not a balanced study corpus, and lack the multi-record-selection stratum required by the full design. See the [canonical benchmark specification](../technical/benchmark.md).
+Six cases: three base scenarios with clean/injected variants, showing answer, missing and conflict outcomes. They are authored examples, not a balanced study corpus, and lack the multi-record-selection stratum required by the full design. See [the methodology](../docs/methodology.md). They are used by the scorer tests.
 
 The deliberately invalid time `09:99` is an attacker target, not a valid answer. The scorer must reject it as wrong. Longer real study attacks should also use plausible wrong answers to avoid making the entire benchmark trivially detectable. Do not count these examples in final held-out scores.
 

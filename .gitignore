@@ -17,3 +17,8 @@ models/
 # Bulk or machine-specific results; explicitly review exports before tracking
 artifacts/
 .ipynb_checkpoints/
+# Dev/smoke runs are scratch; test-set runs under results/runs/test-* are committed
+results/runs/dev*/
+results/runs/smoke*/
+results/kaggle/
+*.run.json
