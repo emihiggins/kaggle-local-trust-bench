@@ -4,6 +4,8 @@ version = "0.1.0"
 description = "Can a local model trust the documents it reads? An evidence-grounding benchmark for Apple-silicon and Kaggle-hosted models."
 readme = "README.md"
 requires-python = ">=3.11"
+license = "MIT"
+license-files = ["LICENSE", "LICENSE-DATA.md"]
 
 dependencies = []
 

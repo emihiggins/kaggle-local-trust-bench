@@ -112,3 +112,7 @@ The data is synthetic, English-only and template-generated, so these results don
 ## Credits
 
 Built on [MLX LM](https://github.com/ml-explore/mlx-lm) and [Kaggle Benchmarks](https://github.com/Kaggle/kaggle-benchmarks). Model weights are by their respective authors (Qwen, Google, OpenAI), with MLX conversions by [mlx-community](https://huggingface.co/mlx-community). The code and dataset were written with AI coding assistance and reviewed by me.
+
+## License
+
+Code is under the [MIT License](LICENSE). The dataset and results (`data/`, `examples/`, `results/`) are under [CC BY 4.0](LICENSE-DATA.md). All case content is synthetic.

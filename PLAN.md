@@ -26,7 +26,7 @@ This replaces the first-pass planning handoff (see git history at `8aa2f44`). I 
 - [x] All 6 local models downloaded (pinned revisions) and smoke-tested on the 48-case dev set: every case completed, JSON valid, no thinking leakage, nothing hit the token cap. Speed 0.2–1.1 s/case; peak MLX memory 3–20 GB. Gemma 4 needed an explicit `enable_thinking=false`.
 - [x] Repo will be public (Emi, 2026-10-04). Merged to `main`.
 - [ ] **Emi:** confirm eligibility and accept the current official rules (see [docs/challenge.md](docs/challenge.md)).
-- [ ] **Emi:** choose a license before the repo goes public (suggested: MIT for code, CC BY 4.0 for data).
+- [x] License chosen: MIT for code, CC BY 4.0 for data and results (Emi, 2026-10-04).
 - [x] Kaggle CLI logged in (2026-10-04). Task listing and the model list work.
 - [x] Model-proxy credentials work after Emi's phone and identity verification (`.env`, git-ignored, 1-hour key; refresh with `kaggle b auth -y`). The local proxy offers only 8 models; server-side runs offer all 41, including Gemma 4 and gpt-oss-20b.
 - [x] Dev injected task validated locally through the proxy with kaggle-benchmarks 0.6.1 on `gemini-3-flash-preview`: 24/24 completed, 100% strict, and identical scores when its raw outputs are rescored by the local scorer. Watch for a ceiling: hosted frontier models may saturate the standard set, which makes the crowded set more important for them.
