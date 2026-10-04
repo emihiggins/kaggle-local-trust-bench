@@ -1,0 +1,19 @@
+# Local secrets and credentials
+.env
+.env.*
+!.env.example
+*credentials*.json
+kaggle.json
+# Environments / caches / weights
+.venv/
+__pycache__/
+.pytest_cache/
+.cache/
+models/
+*.gguf
+*.safetensors
+*.bin
+.DS_Store
+# Bulk or machine-specific results; explicitly review exports before tracking
+artifacts/
+.ipynb_checkpoints/
