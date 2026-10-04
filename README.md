@@ -6,7 +6,7 @@ When you point a local assistant at a folder of order records, invoices, or tick
 
 This is my entry for the [DEV × Kaggle Benchmarking Challenge](https://dev.to/challenges/kaggle-2026-09-23) (entry period Sept 23 – Oct 11, 2026).
 
-> **Status (2026-10-04):** harness built and tested; all six local models pass dev smoke runs. **No benchmark results yet.** The test set gets frozen and the measured runs start on Oct 5. Results, charts and the Kaggle leaderboard link will appear here as they're produced. Nothing below is a finding until it shows up in [Results](#results).
+> **Status (2026-10-04):** harness built and tested; all six local models pass dev smoke runs. The test set was reviewed and **frozen** on Oct 4 ([hashes](data/FREEZE.md)). **No benchmark results yet.** Measured runs start on Oct 5. Results, charts and the Kaggle leaderboard link will appear here as they're produced. Nothing below is a finding until it shows up in [Results](#results).
 
 ## The task
 
@@ -67,7 +67,7 @@ The headline metric is strict success macro-averaged over the four strata, repor
 
 Exact repositories and pinned revisions are in [configs/models.json](configs/models.json). The models span three vendors, sizes from 4B to 35B, and both dense and mixture-of-experts designs. All of them fit comfortably in 48 GB.
 
-**Hosted (Kaggle Benchmarks, free quota):** selected from Kaggle's current model list once the account check is done. They'll be the same frozen cases with the same renderer and scorer.
+**Hosted (Kaggle Benchmarks, free quota):** the same frozen cases, renderer and scorer, run on Kaggle's servers. Kaggle hosts **Gemma 4 26B-A4B and gpt-oss-20b**, the same models as two of the local ones, so the benchmark can compare one set of weights run 4-bit on a Mac with Kaggle's serving. The planned set adds Gemini 3.5 Flash and one frontier model. Final slugs are recorded with the results.
 
 **Extensions, if time allows:** 8-bit vs. 4-bit Qwen3.8-27B, thinking on vs. off for Qwen3.8-27B, and the same weights under Ollama vs. MLX.
 

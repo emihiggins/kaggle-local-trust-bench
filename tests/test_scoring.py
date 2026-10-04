@@ -117,3 +117,17 @@ def test_split_reasoning():
     assert split_reasoning(raw)[1] == "{}"
     assert split_reasoning("<|channel>thought\nhmm<channel|>{}") == ("\nhmm", "{}")
     assert split_reasoning('{"a":1}') == (None, '{"a":1}')
+
+
+def test_related_dates_stay_ordered():
+    from local_trust.generate import DOMAINS
+    pairs = {d["field"][0]: d["alt"][0] for d in DOMAINS if "alt_from" in d}
+    import re
+    for case in generate("t", 30, 11, extra=12):
+        for doc in case["documents"]:
+            t = doc["text"].lower()
+            for main, alt in pairs.items():
+                m = re.search(re.escape(main) + r"\D*(\d{4}-\d\d-\d\d)", t)
+                a = re.search(re.escape(alt) + r"\D*(\d{4}-\d\d-\d\d)", t)
+                if m and a:
+                    assert a.group(1) < m.group(1), t

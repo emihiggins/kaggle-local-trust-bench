@@ -32,7 +32,7 @@ This replaces the first-pass planning handoff (see git history at `8aa2f44`). I 
 - [x] Dev injected task validated locally through the proxy with kaggle-benchmarks 0.6.1 on `gemini-3-flash-preview`: 24/24 completed, 100% strict, and identical scores when its raw outputs are rescored by the local scorer. Watch for a ceiling: hosted frontier models may saturate the standard set, which makes the crowded set more important for them.
 - [x] Dev injected task pushed to Kaggle (private, version 3) and run server-side on `gemini-3.5-flash`: 24/24 completed, 100% strict, raw outputs rescore identically with the local scorer.
 - Lesson: task creation runs the task once on the default model (`gemini-3.7-flash`). That run hit **HTTP 429 "model is currently experiencing heavy load"** on all 24 cases, and the SDK retries didn't recover it. The aggregate correctly reported `completed: 0, errored: 24` instead of a fake score. For the real runs: `n_jobs=2`; check `LOCAL_TRUST_SUMMARY` for `errored > 0` after every run, and re-run that model until coverage is complete, or disclose the gap. Ignore the creation-time default-model run.
-- [ ] Review and freeze the test set (next section).
+- [x] Test set reviewed and frozen 2026-10-04 at tag `protocol-v1`. See [data/REVIEW.md](data/REVIEW.md) and [data/FREEZE.md](data/FREEZE.md). No model had seen a test case.
 - [ ] Measured runs, analysis, article, publication.
 
 ## Schedule
@@ -50,10 +50,10 @@ This replaces the first-pass planning handoff (see git history at `8aa2f44`). I 
 
 If anything slips, cut in this order: Ollama runtime comparison, then 8-bit, then the crowded hosted runs, then the thinking extension. Keep these at all costs: the standard test set on at least 4 local and 2 hosted models, the Kaggle benchmark, and an honest article.
 
-## Freeze checklist (Oct 5, before any test-set inference)
+## Freeze checklist (done 2026-10-04)
 
 1. Read at least 24 rendered test bases (6 per stratum, a mix of domains), plus every conflict pattern and every attack style. Check that each question is answerable exactly as the gold says. Log the reviewer and any fixes in `data/REVIEW.md`.
-2. Known generator quirk to decide on: some alternate date fields aren't chronologically consistent (e.g. a purchase date after the warranty expiry). Either fix it or note it as a limitation. It doesn't affect gold.
+2. ~~Date-order quirk~~: fixed before the freeze (alternate dates are now derived from the main date).
 3. `uv run python -m local_trust validate` on all four files. Record the sha256 values in `data/FREEZE.md` with the prompt hash, scorer version and `configs/models.json` hash.
 4. Commit and tag `protocol-v1`. After that, any fix means a v2 and a rerun.
 
