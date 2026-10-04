@@ -1,0 +1,14 @@
+{
+ "started_utc": "2026-10-04T23:00:06+00:00",
+ "machine": "Mac Studio (2026), Apple M5 Max, 18-core CPU, 40-core GPU, 48 GB, macOS 27.0",
+ "power": "AC, lowpowermode 0, sleep prevented (caffeinate)",
+ "swap_used_mb_at_start": 2484,
+ "memory_free_pct_at_start": 89,
+ "other_gpu_work": "none (Ollama idle, no models loaded)",
+ "git_commit": "6576824c71915dbfb63b44023d6f9d9fc4a11fae",
+ "git_commit_note": "protocol-v1 freeze commit (hash after author-email rewrite; tree identical to c0c87b4)",
+ "finished_utc": "2026-10-04T23:27:37+00:00",
+ "swap_used_mb_at_end": 2468,
+ "errors": 0,
+ "hit_max_tokens": 0
+}

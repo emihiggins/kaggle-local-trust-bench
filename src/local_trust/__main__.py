@@ -35,6 +35,10 @@ def main():
     a.add_argument("--runs", nargs="+", required=True, help="results directories")
     a.add_argument("--cases", required=True)
     a.add_argument("--out", default="results/summary")
+    ki = sub.add_parser("import-kaggle", help="convert downloaded Kaggle runs to local rows (with parity checks)")
+    ki.add_argument("--src", nargs="+", required=True, help="kaggle download dirs")
+    ki.add_argument("--cases", required=True)
+    ki.add_argument("--out", required=True)
     k = sub.add_parser("export-kaggle", help="build self-contained Kaggle task files")
     k.add_argument("--cases", required=True)
     k.add_argument("--out-dir", default="kaggle")
@@ -65,6 +69,9 @@ def main():
     elif args.cmd == "analyze":
         from . import analysis
         analysis.main(args.runs, args.cases, args.out)
+    elif args.cmd == "import-kaggle":
+        from . import kaggle_import
+        kaggle_import.import_runs(args.src, args.cases, args.out)
     elif args.cmd == "export-kaggle":
         from . import kaggle_export
         kaggle_export.main(args.cases, args.out_dir)

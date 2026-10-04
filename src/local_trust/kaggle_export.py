@@ -58,7 +58,8 @@ STRATA = ("direct", "selection", "missing", "conflict")
 # %% [markdown]
 # ## Tasks
 # The per-case task never raises on a wrong answer, so the SDK's retries only repeat
-# infrastructure failures. The raw response is returned for auditing.
+# infrastructure failures (e.g. HTTP 429). Requests run one at a time because some
+# hosted models rate-limit concurrent calls. The raw response is returned for auditing.
 
 # %%
 @kbench.task(name="local_trust_case", store_task=False)
@@ -76,8 +77,8 @@ def {func_name}(llm) -> float:
     df = pd.DataFrame({{"case_json": [json.dumps(c) for c in CASES]}})
     with kbench.client.enable_cache():
         runs = local_trust_case.evaluate(
-            llm=[llm], evaluation_data=df, n_jobs=2, timeout=300,
-            max_attempts=3, retry_delay=20, on_failure="continue",
+            llm=[llm], evaluation_data=df, n_jobs=1, timeout=300,
+            max_attempts=6, retry_delay=45, on_failure="continue",
         )
     errored = list(runs.errored_runs)
     for r in errored[:5]:

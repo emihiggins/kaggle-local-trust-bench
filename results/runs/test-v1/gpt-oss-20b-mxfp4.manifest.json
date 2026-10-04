@@ -1,0 +1,29 @@
+{
+  "model": {
+    "id": "gpt-oss-20b-mxfp4",
+    "backend": "mlx",
+    "repo": "mlx-community/gpt-oss-20b-MXFP4-Q8",
+    "revision": "773a7da77e569019bb0fd17a554b263738d669a3",
+    "base": "openai/gpt-oss-20b",
+    "license": "apache-2.0",
+    "template_kwargs": {
+      "reasoning_effort": "low"
+    },
+    "max_tokens": 4096
+  },
+  "config_sha": "7dc9f18c8feab789",
+  "load_s": 2.2230790840112604,
+  "chat_template_sha": "a4c9919cbbd4acdd",
+  "dataset": "data/test-v1.jsonl",
+  "dataset_sha": "24967d892bc2f5f0",
+  "prompt_sha": "403f3b108a0e4437",
+  "scorer": "v1",
+  "versions": {
+    "python": "3.12.14",
+    "macos": "27.0",
+    "mlx": "0.32.3",
+    "mlx-lm": "0.32.0",
+    "transformers": "5.18.0"
+  },
+  "started": "2026-10-04T23:02:10.686564+00:00"
+}

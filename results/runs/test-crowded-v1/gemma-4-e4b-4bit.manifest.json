@@ -1,0 +1,29 @@
+{
+  "model": {
+    "id": "gemma-4-e4b-4bit",
+    "backend": "mlx",
+    "repo": "mlx-community/gemma-4-e4b-it-4bit",
+    "revision": "475b9088d29754a3379866cf5aeb6b41acd313c2",
+    "base": "google/gemma-4-E4B-it",
+    "license": "gemma",
+    "template_kwargs": {
+      "enable_thinking": false
+    },
+    "max_tokens": 512
+  },
+  "config_sha": "1d7eeca221cfe6d3",
+  "load_s": 1.932175374997314,
+  "chat_template_sha": "2f1b4d75d067bae3",
+  "dataset": "data/test-crowded-v1.jsonl",
+  "dataset_sha": "d4b7b56e4d0efa0f",
+  "prompt_sha": "403f3b108a0e4437",
+  "scorer": "v1",
+  "versions": {
+    "python": "3.12.14",
+    "macos": "27.0",
+    "mlx": "0.32.3",
+    "mlx-lm": "0.32.0",
+    "transformers": "5.18.0"
+  },
+  "started": "2026-10-04T23:12:35.502831+00:00"
+}

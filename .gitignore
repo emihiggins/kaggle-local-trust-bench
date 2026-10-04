@@ -23,3 +23,4 @@ results/runs/smoke*/
 results/kaggle/
 *.run.json
 *.task.json
+results/runs/*.log
