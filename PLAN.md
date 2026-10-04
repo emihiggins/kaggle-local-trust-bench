@@ -23,8 +23,10 @@ This replaces the first-pass planning handoff (see git history at `8aa2f44`). I 
 - [x] uv environment (Python 3.12, mlx 0.32.3, mlx-lm 0.32.0). Metal works.
 - [x] Generator, validator, renderer, scorer, MLX and Ollama adapters, resumable runner, analysis and charts, Kaggle exporter.
 - [x] 31 tests: gold scores perfectly, malformed or plausible-wrong answers fail, no gold leakage, deterministic corpus, Kaggle export parity.
-- [x] Dev smoke runs: Qwen3.5-4B (48/48 cases, 0.2 s/case), Gemma 4 E4B (48/48, after the thinking fix), gpt-oss-20b (8 cases, harmony parsing OK).
+- [x] All 6 local models downloaded (pinned revisions) and smoke-tested on the 48-case dev set: every case completed, JSON valid, no thinking leakage, nothing hit the token cap. Speed 0.2–1.1 s/case; peak MLX memory 3–20 GB. Gemma 4 needed an explicit `enable_thinking=false`.
+- [x] Repo will be public (Emi, 2026-10-04). Merged to `main`.
 - [ ] **Emi:** confirm eligibility and accept the current official rules (see [docs/challenge.md](docs/challenge.md)).
+- [ ] **Emi:** choose a license before the repo goes public (suggested: MIT for code, CC BY 4.0 for data).
 - [ ] **Emi:** log in to Kaggle on this Mac (`kaggle auth login`, then `kaggle benchmarks init -y`).
 - [ ] Review and freeze the test set (next section).
 - [ ] Measured runs, analysis, article, publication.
@@ -34,7 +36,7 @@ This replaces the first-pass planning handoff (see git history at `8aa2f44`). I 
 | Day | Work | Gate to pass |
 |---|---|---|
 | **Sun Oct 4** | Harness, docs, smoke tests ✔ | Tests green; 3 models smoke-tested |
-| **Mon Oct 5** | Kaggle login, list models, push the **dev** task and run 1 hosted model. Review the test set, freeze it, tag `protocol-v1`. Finish downloads and smoke the remaining 3 local models on dev. | Hosted run produces a score that matches local rescoring of the same raw outputs. The frozen hashes are committed *before* any test-set call. |
+| **Mon Oct 5** | Kaggle login, list models, push the **dev** task and run 1 hosted model. Review the test set, freeze it, tag `protocol-v1`.  | Hosted run produces a score that matches local rescoring of the same raw outputs. The frozen hashes are committed *before* any test-set call. |
 | **Tue Oct 6** | Local primary: 6 models × (standard + crowded) × 240 cases (~2,900 calls; an estimated 1–2 h total). Hosted: 3–4 models × standard clean+injected. Add crowded only if quota allows. | Full coverage, or every failure disclosed. Quota ledger recorded. |
 | **Wed Oct 7** | Extensions in priority order: (1) Qwen3.8-27B thinking on vs. off, (2) 8-bit vs. 4-bit, (3) Ollama vs. MLX. Then analysis. | Each extension gets its own table, or is marked omitted. |
 | **Thu Oct 8** | Audit 3 qualitative examples against the source docs. Charts. Draft the article. Build the Kaggle benchmark collection in the UI. | Every number in the draft traces to `results/summary/*.json`. |
@@ -66,5 +68,5 @@ The question the article answers: *"If I give a local model my documents, when c
 - No LLM judge. No tuning on the test set. No retries of wrong answers. No dropping failed cases.
 - Weights, credentials, `.env`, caches and machine serial numbers or UUIDs stay out of Git.
 - Don't change macOS memory limits or other system settings to make a model fit. Use a smaller model.
-- Publishing anything public (the Kaggle benchmark, the DEV post, making this repo public) needs Emi's explicit go-ahead.
+- Publishing the Kaggle benchmark or the DEV post needs Emi's explicit go-ahead. The repo is intended to be public, so never commit anything that couldn't be.
 - No claim without evidence in `results/`. Avoid "secure", "hallucination-free", "best local model" and "uses the Neural Engine".

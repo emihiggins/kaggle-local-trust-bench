@@ -11,5 +11,5 @@ Read README.md, PLAN.md and docs/methodology.md before changing code or running 
 - Don't change wired-memory limits or other macOS settings to make a model fit. Use a smaller model instead.
 - One model loaded at a time, one request at a time, and no other GPU-heavy work during timed runs.
 - Commit tested checkpoints. Run available secret scanning and inspect staged contents before pushes.
-- Publishing (the Kaggle benchmark going public, the DEV post, making this repo public) needs Emi's explicit approval each time.
+- This repo is (or will be) public: commit nothing private. Publishing the Kaggle benchmark or the DEV post needs Emi's explicit approval each time.
 - No unearned claims. Follow the interpretation rules in docs/methodology.md.

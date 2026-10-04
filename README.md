@@ -6,7 +6,7 @@ When you point a local assistant at a folder of order records, invoices, or tick
 
 This is my entry for the [DEV × Kaggle Benchmarking Challenge](https://dev.to/challenges/kaggle-2026-09-23) (entry period Sept 23 – Oct 11, 2026).
 
-> **Status (2026-10-04):** harness built and tested; dev smoke runs pass on three local models. **No benchmark results yet.** The test set gets frozen and the measured runs start on Oct 5. Results, charts and the Kaggle leaderboard link will appear here as they're produced. Nothing below is a finding until it shows up in [Results](#results).
+> **Status (2026-10-04):** harness built and tested; all six local models pass dev smoke runs. **No benchmark results yet.** The test set gets frozen and the measured runs start on Oct 5. Results, charts and the Kaggle leaderboard link will appear here as they're produced. Nothing below is a finding until it shows up in [Results](#results).
 
 ## The task
 
