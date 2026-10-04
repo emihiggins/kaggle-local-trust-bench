@@ -30,7 +30,8 @@ This replaces the first-pass planning handoff (see git history at `8aa2f44`). I 
 - [x] Kaggle CLI logged in (2026-10-04). Task listing and the model list work.
 - [x] Model-proxy credentials work after Emi's phone and identity verification (`.env`, git-ignored, 1-hour key; refresh with `kaggle b auth -y`). The local proxy offers only 8 models; server-side runs offer all 41, including Gemma 4 and gpt-oss-20b.
 - [x] Dev injected task validated locally through the proxy with kaggle-benchmarks 0.6.1 on `gemini-3-flash-preview`: 24/24 completed, 100% strict, and identical scores when its raw outputs are rescored by the local scorer. Watch for a ceiling: hosted frontier models may saturate the standard set, which makes the crowded set more important for them.
-- [ ] Push the dev task to Kaggle (private) and run one model server-side.
+- [x] Dev injected task pushed to Kaggle (private, version 3) and run server-side on `gemini-3.5-flash`: 24/24 completed, 100% strict, raw outputs rescore identically with the local scorer.
+- Lesson: task creation runs the task once on the default model (`gemini-3.7-flash`). That run hit **HTTP 429 "model is currently experiencing heavy load"** on all 24 cases, and the SDK retries didn't recover it. The aggregate correctly reported `completed: 0, errored: 24` instead of a fake score. For the real runs: `n_jobs=2`; check `LOCAL_TRUST_SUMMARY` for `errored > 0` after every run, and re-run that model until coverage is complete, or disclose the gap. Ignore the creation-time default-model run.
 - [ ] Review and freeze the test set (next section).
 - [ ] Measured runs, analysis, article, publication.
 

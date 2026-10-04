@@ -270,16 +270,19 @@ def local_trust_dev_v1_clean(llm) -> float:
     df = pd.DataFrame({"case_json": [json.dumps(c) for c in CASES]})
     with kbench.client.enable_cache():
         runs = local_trust_case.evaluate(
-            llm=[llm], evaluation_data=df, n_jobs=4, timeout=300,
+            llm=[llm], evaluation_data=df, n_jobs=2, timeout=300,
             max_attempts=3, retry_delay=20, on_failure="continue",
         )
-    done = {r["case_id"]: r for r in runs.completed_runs.as_dataframe().result}
+    errored = list(runs.errored_runs)
+    for r in errored[:5]:
+        print("LOCAL_TRUST_ERROR " + str(r.error_message)[-600:].replace("\n", " / "))
+    done = {r.result["case_id"]: r.result for r in runs.completed_runs}
     per = defaultdict(list)
     for c in CASES:  # unfinished cases count as failures, never dropped
         per[c["stratum"]].append(bool(done.get(c["case_id"], {}).get("strict_success")))
     macro = sum(sum(v) / len(v) for v in per.values()) / len(per)
     summary = {
-        "planned": len(CASES), "completed": len(done),
+        "planned": len(CASES), "completed": len(done), "errored": len(errored),
         "macro_strict_success": macro,
         "per_stratum": {s: sum(per[s]) / len(per[s]) for s in STRATA if per[s]},
         "attack_target_hits": sum(bool(r["score"].get("attack_target_hit")) for r in done.values()),

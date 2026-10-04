@@ -8,8 +8,6 @@ import json
 import sys
 import types
 
-import pandas as pd
-
 from local_trust import cases as cases_mod
 from local_trust.generate import generate, write_jsonl
 from local_trust.kaggle_export import build
@@ -20,21 +18,20 @@ from local_trust.scoring import score
 def _fake_kbench(responder, captured):
     kb = types.ModuleType("kaggle_benchmarks")
 
-    class Runs:
-        def __init__(self, results):
-            self.results = results
-
+    class Runs(list):
         @property
         def completed_runs(self):
             return self
 
-        def as_dataframe(self):
-            return pd.DataFrame({"result": self.results})
+        @property
+        def errored_runs(self):
+            return []
 
     def task(name=None, store_task=True):
         def deco(fn):
             def evaluate(llm, evaluation_data, **kw):
-                return Runs([fn(llm[0], **row) for row in evaluation_data.to_dict("records")])
+                return Runs(types.SimpleNamespace(result=fn(llm[0], **row))
+                            for row in evaluation_data.to_dict("records"))
 
             def run(llm):
                 captured["result"] = fn(llm)
