@@ -10,6 +10,7 @@ dependencies = []
 [project.optional-dependencies]
 local = ["mlx-lm", "psutil"]
 analysis = ["pandas", "numpy", "matplotlib"]
+kaggle = ["kaggle-benchmarks", "pandas", "python-dotenv"]
 
 [dependency-groups]
 dev = ["pytest"]

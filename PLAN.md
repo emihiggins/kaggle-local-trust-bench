@@ -28,7 +28,9 @@ This replaces the first-pass planning handoff (see git history at `8aa2f44`). I 
 - [ ] **Emi:** confirm eligibility and accept the current official rules (see [docs/challenge.md](docs/challenge.md)).
 - [ ] **Emi:** choose a license before the repo goes public (suggested: MIT for code, CC BY 4.0 for data).
 - [x] Kaggle CLI logged in (2026-10-04). Task listing and the model list work.
-- [ ] `kaggle benchmarks init` returns 403 (model-proxy credentials). Kaggle's message points to missing phone or identity verification at kaggle.com/settings. This is only needed to run task files *locally*; server-side `push`/`run` may work without it, to be confirmed with the dev task.
+- [x] Model-proxy credentials work after Emi's phone and identity verification (`.env`, git-ignored, 1-hour key; refresh with `kaggle b auth -y`). The local proxy offers only 8 models; server-side runs offer all 41, including Gemma 4 and gpt-oss-20b.
+- [x] Dev injected task validated locally through the proxy with kaggle-benchmarks 0.6.1 on `gemini-3-flash-preview`: 24/24 completed, 100% strict, and identical scores when its raw outputs are rescored by the local scorer. Watch for a ceiling: hosted frontier models may saturate the standard set, which makes the crowded set more important for them.
+- [ ] Push the dev task to Kaggle (private) and run one model server-side.
 - [ ] Review and freeze the test set (next section).
 - [ ] Measured runs, analysis, article, publication.
 
