@@ -27,7 +27,8 @@ This replaces the first-pass planning handoff (see git history at `8aa2f44`). I 
 - [x] Repo will be public (Emi, 2026-10-04). Merged to `main`.
 - [ ] **Emi:** confirm eligibility and accept the current official rules (see [docs/challenge.md](docs/challenge.md)).
 - [ ] **Emi:** choose a license before the repo goes public (suggested: MIT for code, CC BY 4.0 for data).
-- [ ] **Emi:** log in to Kaggle on this Mac (`kaggle auth login`, then `kaggle benchmarks init -y`).
+- [x] Kaggle CLI logged in (2026-10-04). Task listing and the model list work.
+- [ ] `kaggle benchmarks init` returns 403 (model-proxy credentials). Kaggle's message points to missing phone or identity verification at kaggle.com/settings. This is only needed to run task files *locally*; server-side `push`/`run` may work without it, to be confirmed with the dev task.
 - [ ] Review and freeze the test set (next section).
 - [ ] Measured runs, analysis, article, publication.
 
@@ -55,7 +56,7 @@ If anything slips, cut in this order: Ollama runtime comparison, then 8-bit, the
 
 ## Hosted model selection (Oct 5)
 
-Choose from `kaggle b t models`. Aim for 3–4 models from different vendors, including at least one economical model and one frontier model, and if possible a hosted Gemma (the same family as the local Gemma 4, which gives a nice local vs. hosted comparison). Record exact slugs, the date, and any controls that can't be set. Stop when the free quota runs out; there's no paid fallback.
+The registry (checked 2026-10-04, 41 models) includes **`gemma-4-26b-a4b-it` and `gpt-oss-20b`, the same models as two of the local ones**. That makes a direct comparison possible: the same weights served by Kaggle vs. 4-bit MLX on the Mac. Proposed hosted set (4): `gemma-4-26b-a4b-it`, `gpt-oss-20b` (same model as local), `gemini-3.5-flash` (economical), plus one frontier model (`claude-sonnet-5-default` or `gpt-5.5-2026-04-23`). Add more only if quota allows. Record exact slugs, the date, and any controls that can't be set. Stop when the free quota runs out; there's no paid fallback.
 
 ## Article angle (draft hypotheses, not findings)
 
