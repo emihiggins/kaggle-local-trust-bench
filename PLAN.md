@@ -59,7 +59,7 @@ If anything slips, cut in this order: Ollama runtime comparison, then 8-bit, the
 
 ## Hosted model selection (Oct 5)
 
-The registry (checked 2026-10-04, 41 models) includes **`gemma-4-26b-a4b-it` and `gpt-oss-20b`, the same models as two of the local ones**. That makes a direct comparison possible: the same weights served by Kaggle vs. 4-bit MLX on the Mac. Proposed hosted set (4): `gemma-4-26b-a4b-it`, `gpt-oss-20b` (same model as local), `gemini-3.5-flash` (economical), plus one frontier model (`claude-sonnet-5-default` or `gpt-5.5-2026-04-23`). Add more only if quota allows. Record exact slugs, the date, and any controls that can't be set. Stop when the free quota runs out; there's no paid fallback.
+The registry (checked 2026-10-04, 41 models) includes **`gemma-4-26b-a4b-it` and `gpt-oss-20b`, the same models as two of the local ones**. That makes a direct comparison possible: the same weights served by Kaggle vs. 4-bit MLX on the Mac. **Chosen hosted set (Emi, 2026-10-04):** `gemma-4-26b-a4b-it`, `gpt-oss-20b` (same model as local), `gemini-3.5-flash` (economical), `claude-sonnet-5-default` (frontier). Standard clean and injected tasks were pushed and runs started 2026-10-04 ~23:05 UTC. Crowded hosted tasks only if quota remains. Record exact slugs, the date, and any controls that can't be set. Stop when the free quota runs out; there's no paid fallback.
 
 ## Article angle (draft hypotheses, not findings)
 
