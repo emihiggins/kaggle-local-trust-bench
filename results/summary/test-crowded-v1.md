@@ -10,6 +10,10 @@ Cases: `data/test-crowded-v1.jsonl` (sha256 `d4b7b56e4d0efa0f`)
 | qwen3.5-4b-4bit | 240/240 | 93.3% [89%–98%] | 66.7% [58%–75%] | 26.7 [17.5, 35.8] | 5.8% | 29.2% | 32.1% | 100.0% | 0.33 s | 3.9 GB |
 | qwen3.6-35b-a3b-4bit | 240/240 | 86.7% [82%–92%] | 83.3% [77%–89%] | 3.3 [-3.3, 10.0] | 0.0% | 5.8% | 14.4% | 100.0% | 0.38 s | 20.9 GB |
 | qwen3.8-27b-4bit | 240/240 | 99.2% [98%–100%] | 97.5% [94%–100%] | 1.7 [0.0, 4.2] | 0.0% | 0.0% | 1.7% | 100.0% | 1.87 s | 17.5 GB |
+| kaggle-claude-sonnet-5-default | 240/240 | 100.0% [100%–100%] | 100.0% [100%–100%] | 0.0 [0.0, 0.0] | 0.0% | 0.0% | 0.0% | 100.0% | NA s | NA GB |
+| kaggle-gemini-3.5-flash | 240/240 | 100.0% [100%–100%] | 100.0% [100%–100%] | 0.0 [0.0, 0.0] | 0.0% | 0.0% | 0.0% | 100.0% | NA s | NA GB |
+| kaggle-gemma-4-26b-a4b-it | 240/240 | 95.8% [92%–99%] | 95.8% [92%–99%] | 0.0 [-4.2, 4.2] | 0.0% | 0.0% | 2.6% | 100.0% | NA s | NA GB |
+| kaggle-gpt-oss-20b | 232/240 | 95.0% [91%–98%] | 97.5% [94%–100%] | -2.5 [-7.5, 2.5] | 0.0% | 0.0% | 2.6% | 97.5% | NA s | NA GB |
 
 Strict success is macro-averaged over the four strata; brackets are 95% stratum-preserving cluster-bootstrap intervals over base scenarios (10,000 resamples, seed 20261004).
 
@@ -27,3 +31,11 @@ Strict success is macro-averaged over the four strata; brackets are 95% stratum-
 | qwen3.6-35b-a3b-4bit | injected | 73% | 67% | 93% | 100% | 83.3% | 0.0% | 30.0% |
 | qwen3.8-27b-4bit | clean | 100% | 97% | 100% | 100% | 99.2% | 0.0% | 1.7% |
 | qwen3.8-27b-4bit | injected | 97% | 93% | 100% | 100% | 97.5% | 0.0% | 5.0% |
+| kaggle-claude-sonnet-5-default | clean | 100% | 100% | 100% | 100% | 100.0% | 0.0% | 0.0% |
+| kaggle-claude-sonnet-5-default | injected | 100% | 100% | 100% | 100% | 100.0% | 0.0% | 0.0% |
+| kaggle-gemini-3.5-flash | clean | 100% | 100% | 100% | 100% | 100.0% | 0.0% | 0.0% |
+| kaggle-gemini-3.5-flash | injected | 100% | 100% | 100% | 100% | 100.0% | 0.0% | 0.0% |
+| kaggle-gemma-4-26b-a4b-it | clean | 100% | 100% | 100% | 83% | 95.8% | 0.0% | 0.0% |
+| kaggle-gemma-4-26b-a4b-it | injected | 100% | 100% | 100% | 83% | 95.8% | 0.0% | 0.0% |
+| kaggle-gpt-oss-20b | clean | 100% | 100% | 97% | 83% | 95.0% | 0.0% | 0.0% |
+| kaggle-gpt-oss-20b | injected | 100% | 97% | 93% | 100% | 97.5% | 0.0% | 0.0% |

@@ -1,0 +1,25 @@
+{
+  "model": {
+    "id": "ollama-gemma4-26b-a4b",
+    "backend": "ollama",
+    "tag": "gemma4:26b-a4b",
+    "think": false,
+    "max_tokens": 512,
+    "experiment": "runtime"
+  },
+  "config_sha": "a28927d6674e3418",
+  "load_s": 9.009119042020757,
+  "chat_template_sha": "b507b9c2f6ca642b",
+  "dataset": "data/test-v1.jsonl",
+  "dataset_sha": "24967d892bc2f5f0",
+  "prompt_sha": "403f3b108a0e4437",
+  "scorer": "v1",
+  "versions": {
+    "python": "3.12.14",
+    "macos": "27.0",
+    "mlx": "0.32.3",
+    "mlx-lm": "0.32.0",
+    "transformers": "5.18.0"
+  },
+  "started": "2026-10-05T01:33:47.617548+00:00"
+}

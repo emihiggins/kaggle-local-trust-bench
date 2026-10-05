@@ -1,0 +1,30 @@
+{
+  "model": {
+    "id": "qwen3.6-35b-a3b-4bit-thinking",
+    "backend": "mlx",
+    "repo": "mlx-community/Qwen3.6-35B-A3B-4bit",
+    "revision": "38740b847e4cb78f352aba30aa41c76e08e6eb46",
+    "base": "Qwen/Qwen3.6-35B-A3B",
+    "license": "apache-2.0",
+    "template_kwargs": {
+      "enable_thinking": true
+    },
+    "max_tokens": 4096,
+    "experiment": "thinking"
+  },
+  "config_sha": "c759f58634d33dec",
+  "load_s": 5.057556374988053,
+  "chat_template_sha": "e84f32a23fdda276",
+  "dataset": "data/test-v1.jsonl",
+  "dataset_sha": "24967d892bc2f5f0",
+  "prompt_sha": "403f3b108a0e4437",
+  "scorer": "v1",
+  "versions": {
+    "python": "3.12.14",
+    "macos": "27.0",
+    "mlx": "0.32.3",
+    "mlx-lm": "0.32.0",
+    "transformers": "5.18.0"
+  },
+  "started": "2026-10-05T00:30:19.278256+00:00"
+}
