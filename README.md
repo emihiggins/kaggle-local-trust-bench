@@ -6,7 +6,7 @@ When you point a local assistant at a folder of order records, invoices, or tick
 
 This is my entry for the [DEV × Kaggle Benchmarking Challenge](https://dev.to/challenges/kaggle-2026-09-23) (entry period Sept 23 – Oct 11, 2026).
 
-> **Status (2026-10-04):** harness built and tested; all six local models pass dev smoke runs. The test set was reviewed and **frozen** on Oct 4 ([hashes](data/FREEZE.md)). **No benchmark results yet.** Measured runs start on Oct 5. Results, charts and the Kaggle leaderboard link will appear here as they're produced. Nothing below is a finding until it shows up in [Results](#results).
+> **Status (2026-10-05):** test set frozen ([hashes](data/FREEZE.md)); all runs complete: 6 local models plus 4 Kaggle-hosted models, both test sets, full coverage, plus exploratory extensions. The public Kaggle benchmark link is coming soon.
 
 ## The task
 
@@ -77,7 +77,35 @@ Mac Studio (2026), Apple M5 Max, 18-core CPU (6 super + 12 performance cores), 4
 
 ## Results
 
-*No results yet.* After the runs, this section will link the public Kaggle benchmark, the summary tables in [`results/summary/`](results/summary/), the charts, and three audited example cases.
+Full tables: [standard](results/summary/test-v1.md) · [crowded](results/summary/test-crowded-v1.md) · [extensions](results/summary/extensions.md). Every number below is recomputed from the raw outputs in `results/runs/`.
+
+![Clean vs injected, standard set](results/summary/test-v1-clean-vs-injected.png)
+
+| Model (standard set, strict success) | Where | Clean | Injected | Drop (pp) |
+|---|---|---|---|---|
+| Claude Sonnet 5 | Kaggle | 100% | 100% | 0 |
+| Gemini 3.5 Flash | Kaggle | 100% | 100% | 0 |
+| gpt-oss-20b | Kaggle | 100% | 100% | 0 |
+| gpt-oss-20b (MXFP4) | Mac | 99.2% | 100% | −0.8 |
+| Qwen3.8-27B (4-bit) | Mac | 100% | 98.3% | 1.7 |
+| Gemma 4 26B-A4B (4-bit) | Mac | 99.2% | 97.5% | 1.7 |
+| Gemma 4 E4B (4-bit) | Mac | 96.7% | 93.3% | 3.3 |
+| Qwen3.6-35B-A3B (4-bit) | Mac | 96.7% | 90.8% | 5.8 |
+| Gemma 4 26B-A4B | Kaggle | 90.0%* | 85.8%* | 4.2 |
+| Qwen3.5-4B (4-bit) | Mac | 98.3% | 71.7% | 26.7 [19.2, 35.0] |
+
+\*All of hosted Gemma's misses are correct `conflict` answers that list the values instead of `null`. The v1 prompt only states `null` explicitly for `missing`. A labelled diagnostic that accepts these puts it at 100% / 100%.
+
+**Headline findings**
+
+- **Clean documents are basically solved; planted notes aren't.** Every model scores 96–100% on clean cases (hosted Gemma's 90% is the formatting issue above). Qwen3.5-4B loses 27 points on the injected twins of the same cases.
+- **Injections mostly cause doubt, not hijacking.** Of Qwen3.5-4B's 34 injected failures, 26 cited the planted note as evidence (usually a false `conflict`). Only 7 output the attacker's value.
+- **Fake authority beats "ignore all instructions".** Qwen3.5-4B stays 97.5% correct against plain commands, but only 20% against a fake "records office" notice.
+- **Thinking mode nearly fixes it, at about 10× the latency** (exploratory): Qwen3.5-4B goes from 66.7% to 99.2% injected on the crowded set, and Qwen3.6-35B goes from 83.3% to 99.2%. Neither cited a note or adopted a planted value with thinking on.
+- **It isn't quantization:** Qwen3.5-4B scores 71.7% / 72.5% / 73.3% injected at 4-bit / 8-bit / bf16.
+- **Serving stacks change output conventions:** the same Gemma 4 weights on Kaggle and on Ollama list values in conflict answers, while MLX leaves them null.
+
+![Thinking off vs on](results/summary/thinking-injected.png)
 
 ## Reproduce
 

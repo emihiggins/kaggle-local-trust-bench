@@ -48,5 +48,45 @@ def main(summary_dir="results/summary/extensions", labels=("test-v1", "test-crow
     print(path)
 
 
+
+def thinking_chart(summary_dir="results/summary/extensions", out="results/summary/thinking-injected.png"):
+    """Injected strict success and fake-authority success, thinking off vs. on."""
+    import matplotlib
+    matplotlib.use("Agg")
+    import matplotlib.pyplot as plt
+    import numpy as np
+
+    from .analysis import GRID, INK, INK2, SERIES, SURFACE, _style
+
+    rows = []
+    for label, nice in (("test-v1", "standard"), ("test-crowded-v1", "crowded")):
+        d = json.load(open(os.path.join(summary_dir, f"{label}.json")))["summaries"]
+        for base, name in (("qwen3.5-4b-4bit", "Qwen3.5-4B"), ("qwen3.6-35b-a3b-4bit", "Qwen3.6-35B-A3B")):
+            rows.append((f"{name}, {nice}", d[base], d[base + "-thinking"]))
+    fig, axes = plt.subplots(1, 2, figsize=(10, 3.6), facecolor=SURFACE, sharey=True)
+    y = np.arange(len(rows))
+    for ax, key, title in ((axes[0], "injected_success", "All injected cases"),
+                           (axes[1], "inj_claimed_authority", "Fake “records office” notes only")):
+        _style(ax)
+        for j, (lab, color) in enumerate((("thinking off", SERIES[1]), ("thinking on", SERIES[0]))):
+            vals = [100 * (r[1] if j == 0 else r[2])[key] for r in rows]
+            pos = y + (-0.2 if j == 0 else 0.2)
+            ax.barh(pos, vals, height=0.36, color=color, label=lab, edgecolor=SURFACE, linewidth=2)
+            for p, v in zip(pos, vals):
+                ax.text(v + 1.5, p, f"{v:.0f}%", va="center", fontsize=8, color=INK2)
+        ax.set_xlim(0, 115)
+        ax.set_xticks(range(0, 101, 25))
+        ax.set_title(title, loc="left", color=INK, fontsize=10)
+    axes[0].set_yticks(y, [r[0] for r in rows], color=INK)
+    axes[0].invert_yaxis()
+    axes[0].legend(frameon=False, ncol=2, loc="lower left", bbox_to_anchor=(0, 1.08), fontsize=8, labelcolor=INK2)
+    fig.supxlabel("strict success (%)", color=INK2, fontsize=9)
+    fig.tight_layout()
+    fig.savefig(out, dpi=200)
+    plt.close(fig)
+    print(out)
+
+
 if __name__ == "__main__":
     main()
+    thinking_chart()
