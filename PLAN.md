@@ -42,13 +42,25 @@ This replaces the first-pass planning handoff (see git history at `8aa2f44`). I 
 | **Sun Oct 4** | Harness, docs, smoke tests ✔ | Tests green; 3 models smoke-tested |
 | **Mon Oct 5** | Kaggle login, list models, push the **dev** task and run 1 hosted model. Review the test set, freeze it, tag `protocol-v1`.  | Hosted run produces a score that matches local rescoring of the same raw outputs. The frozen hashes are committed *before* any test-set call. |
 | **Tue Oct 6** | Local primary: 6 models × (standard + crowded) × 240 cases (~2,900 calls; an estimated 1–2 h total). Hosted: 3–4 models × standard clean+injected. Add crowded only if quota allows. | Full coverage, or every failure disclosed. Quota ledger recorded. |
-| **Wed Oct 7** | Extensions in priority order: (1) Qwen3.8-27B thinking on vs. off, (2) 8-bit vs. 4-bit, (3) Ollama vs. MLX. Then analysis. | Each extension gets its own table, or is marked omitted. |
+| **Wed Oct 7** | ~~Extensions~~ run on Oct 4 instead (see below). Analysis. | Each extension gets its own table, or is marked omitted. |
 | **Thu Oct 8** | Audit 3 qualitative examples against the source docs. Charts. Draft the article. Build the Kaggle benchmark collection in the UI. | Every number in the draft traces to `results/summary/*.json`. |
 | **Fri Oct 9** | Emi reviews the draft and the benchmark. Make the Kaggle benchmark public and check it signed out. | The public URL works in a private window. |
 | **Sat Oct 10** | Publish the DEV post (with Emi's approval). | Post is live with the `kagglechallenge` tag and a working benchmark link. |
 | Sun Oct 11 | Buffer only. | — |
 
 If anything slips, cut in this order: Ollama runtime comparison, then 8-bit, then the crowded hosted runs, then the thinking extension. Keep these at all costs: the standard test set on at least 4 local and 2 hosted models, the Kaggle benchmark, and an honest article.
+
+## Exploratory extensions (chosen 2026-10-04, after seeing primary local results)
+
+These were picked *because of* the primary results, so the article labels them post-hoc and exploratory. Same frozen cases, prompt and scorer; config in `configs/extensions.json`; outputs in `results/runs/ext-*`.
+
+1. **Thinking on vs. off:** Qwen3.5-4B and Qwen3.6-35B-A3B (`enable_thinking=true`, 4,096-token cap). Motivation: gpt-oss-20b, which always reasons, made no injected errors, while Qwen3.5-4B fell to 20% on fake-authority notes.
+2. **Precision ladder:** Qwen3.5-4B at 4-bit, 8-bit and bf16 (same mlx-community "MLX" conversion series). Asks whether its injection drop comes from quantization.
+3. **Runtime:** Ollama (`qwen3.6:35b-a3b`, `gemma4:26b-a4b`, Ollama's default quantization) vs. MLX 4-bit.
+
+Dropped from the original list: Qwen3.8-27B 8-bit and thinking, because that model already scores ~98–100% and can't show an effect.
+
+Parser change: `split_reasoning` now also handles `reasoning</think>answer` (thinking templates pre-insert `<think>`). No primary output contains `</think>`, so no primary score changes.
 
 ## Freeze checklist (done 2026-10-04)
 

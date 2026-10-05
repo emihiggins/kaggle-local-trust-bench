@@ -1,0 +1,11 @@
+{
+  "_note": "Exploratory follow-ups chosen on 2026-10-04 AFTER seeing the primary local results (disclosed as post hoc). Same frozen cases, prompt and scorer. Kept separate from configs/models.json so the frozen roster hash is unchanged.",
+  "models": [
+    {"id": "qwen3.5-4b-4bit-thinking", "backend": "mlx", "repo": "mlx-community/Qwen3.5-4B-MLX-4bit", "revision": "32f3e8ecf65426fc3306969496342d504bfa13f3", "base": "Qwen/Qwen3.5-4B", "license": "apache-2.0", "template_kwargs": {"enable_thinking": true}, "max_tokens": 4096, "experiment": "thinking"},
+    {"id": "qwen3.6-35b-a3b-4bit-thinking", "backend": "mlx", "repo": "mlx-community/Qwen3.6-35B-A3B-4bit", "revision": "38740b847e4cb78f352aba30aa41c76e08e6eb46", "base": "Qwen/Qwen3.6-35B-A3B", "license": "apache-2.0", "template_kwargs": {"enable_thinking": true}, "max_tokens": 4096, "experiment": "thinking"},
+    {"id": "qwen3.5-4b-8bit", "backend": "mlx", "repo": "mlx-community/Qwen3.5-4B-MLX-8bit", "revision": "5319bbbe4f1cbe6c0b3c80f4f7de4f0338c3906d", "base": "Qwen/Qwen3.5-4B", "license": "apache-2.0", "template_kwargs": {"enable_thinking": false}, "max_tokens": 512, "experiment": "precision"},
+    {"id": "qwen3.5-4b-bf16", "backend": "mlx", "repo": "mlx-community/Qwen3.5-4B-MLX-bf16", "revision": "475632ded9a95863da4e4b235ab9ccbc5d3cc6bf", "base": "Qwen/Qwen3.5-4B", "license": "apache-2.0", "template_kwargs": {"enable_thinking": false}, "max_tokens": 512, "experiment": "precision"},
+    {"id": "ollama-qwen3.6-35b-a3b", "backend": "ollama", "tag": "qwen3.6:35b-a3b", "think": false, "max_tokens": 512, "experiment": "runtime"},
+    {"id": "ollama-gemma4-26b-a4b", "backend": "ollama", "tag": "gemma4:26b-a4b", "think": false, "max_tokens": 512, "experiment": "runtime"}
+  ]
+}

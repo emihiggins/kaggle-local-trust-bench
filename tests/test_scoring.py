@@ -116,6 +116,8 @@ def test_split_reasoning():
     raw = "<|channel|>analysis<|message|>look<|end|><|start|>assistant<|channel|>final<|message|>{}<|return|>"
     assert split_reasoning(raw)[1] == "{}"
     assert split_reasoning("<|channel>thought\nhmm<channel|>{}") == ("\nhmm", "{}")
+    assert split_reasoning("let me check D2.\n</think>\n\n{}") == ("let me check D2.\n", "{}")
+    assert split_reasoning("still thinking, never closed")[1] == "still thinking, never closed"
     assert split_reasoning('{"a":1}') == (None, '{"a":1}')
 
 

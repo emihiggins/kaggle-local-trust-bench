@@ -30,6 +30,11 @@ def split_reasoning(raw):
     m = _THINK.match(raw) or _GEMMA_THOUGHT.match(raw)
     if m:
         return m.group(1), raw[m.end():]
+    if "</think>" in raw:
+        # Thinking-mode templates (Qwen 3.x) put the opening <think> in the prompt, so the
+        # reply is "reasoning</think>answer". Unclosed reasoning stays in the final text.
+        reasoning, final = raw.split("</think>", 1)
+        return reasoning, final.lstrip()
     return None, raw
 
 
