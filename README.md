@@ -6,7 +6,7 @@ When you point a local assistant at a folder of order records, invoices, or tick
 
 This is my entry for the [DEV × Kaggle Benchmarking Challenge](https://dev.to/challenges/kaggle-2026-09-23) (entry period Sept 23 – Oct 11, 2026).
 
-> **Status (2026-10-05):** test set frozen ([hashes](data/FREEZE.md)); all runs complete: 6 local models plus 4 Kaggle-hosted models, both test sets, full coverage, plus exploratory extensions. The public Kaggle benchmark link is coming soon.
+> **Status (2026-10-05):** test set frozen ([hashes](data/FREEZE.md)); all runs complete: 6 local models plus 5 Kaggle-hosted models, both test sets, full coverage, plus exploratory extensions. The public Kaggle benchmark link is coming soon.
 
 ## The task
 
@@ -67,7 +67,7 @@ The headline metric is strict success macro-averaged over the four strata, repor
 
 Exact repositories and pinned revisions are in [configs/models.json](configs/models.json). The models span three vendors, sizes from 4B to 35B, and both dense and mixture-of-experts designs. All of them fit comfortably in 48 GB.
 
-**Hosted (Kaggle Benchmarks, free quota):** the same frozen cases, renderer and scorer, run on Kaggle's servers. Kaggle hosts **Gemma 4 26B-A4B and gpt-oss-20b**, the same models as two of the local ones, so the benchmark can compare one set of weights run 4-bit on a Mac with Kaggle's serving. The planned set adds Gemini 3.5 Flash and one frontier model. Final slugs are recorded with the results.
+**Hosted (Kaggle Benchmarks, free quota):** the same frozen cases, renderer and scorer, run on Kaggle's servers. Kaggle hosts **Gemma 4 26B-A4B and gpt-oss-20b**, the same models as two of the local ones, so the benchmark can compare one set of weights run 4-bit on a Mac with Kaggle's serving. The hosted set also includes Claude Sonnet 5, Gemini 3.5 Flash and Gemini 3.7 Flash. Exact Kaggle slugs are recorded in every result row.
 
 **Extensions, if time allows:** 8-bit vs. 4-bit Qwen3.8-27B, thinking on vs. off for Qwen3.8-27B, and the same weights under Ollama vs. MLX.
 
@@ -85,7 +85,8 @@ Full tables: [standard](results/summary/test-v1.md) · [crowded](results/summary
 |---|---|---|---|---|
 | Claude Sonnet 5 | Kaggle | 100% | 100% | 0 |
 | Gemini 3.5 Flash | Kaggle | 100% | 100% | 0 |
-| gpt-oss-20b | Kaggle | 100% | 100% | 0 |
+| gpt-oss-20b | Kaggle | 100% | 99.2% | 0.8 |
+| Gemini 3.7 Flash | Kaggle | 96.7%† | 100% | −3.3 |
 | gpt-oss-20b (MXFP4) | Mac | 99.2% | 100% | −0.8 |
 | Qwen3.8-27B (4-bit) | Mac | 100% | 98.3% | 1.7 |
 | Gemma 4 26B-A4B (4-bit) | Mac | 99.2% | 97.5% | 1.7 |
@@ -94,7 +95,7 @@ Full tables: [standard](results/summary/test-v1.md) · [crowded](results/summary
 | Gemma 4 26B-A4B | Kaggle | 90.0%* | 85.8%* | 4.2 |
 | Qwen3.5-4B (4-bit) | Mac | 98.3% | 71.7% | 26.7 [19.2, 35.0] |
 
-\*All of hosted Gemma's misses are correct `conflict` answers that list the values instead of `null`. The v1 prompt only states `null` explicitly for `missing`. A labelled diagnostic that accepts these puts it at 100% / 100%.
+\*All of hosted Gemma's misses are correct `conflict` answers that list the values instead of `null`. The v1 prompt only states `null` explicitly for `missing`. A labelled diagnostic that accepts these puts it at 100% / 100%. †All of Gemini 3.7 Flash's misses are correct JSON wrapped in a markdown fence.
 
 **Headline findings**
 

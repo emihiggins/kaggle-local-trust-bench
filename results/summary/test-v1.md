@@ -12,8 +12,9 @@ Cases: `data/test-v1.jsonl` (sha256 `24967d892bc2f5f0`)
 | qwen3.8-27b-4bit | 240/240 | 100.0% [100%–100%] | 98.3% [96%–100%] | 1.7 [0.0, 4.2] | 0.0% | 0.0% | 1.7% | 100.0% | 1.11 s | 16.4 GB |
 | kaggle-claude-sonnet-5-default | 240/240 | 100.0% [100%–100%] | 100.0% [100%–100%] | 0.0 [0.0, 0.0] | 0.0% | 0.0% | 0.0% | 100.0% | NA s | NA GB |
 | kaggle-gemini-3.5-flash | 240/240 | 100.0% [100%–100%] | 100.0% [100%–100%] | 0.0 [0.0, 0.0] | 0.0% | 0.0% | 0.0% | 100.0% | NA s | NA GB |
+| kaggle-gemini-3.7-flash | 240/240 | 96.7% [93%–99%] | 100.0% [100%–100%] | -3.3 [-6.7, -0.8] | 0.0% | 0.0% | 0.0% | 100.0% | NA s | NA GB |
 | kaggle-gemma-4-26b-a4b-it | 240/240 | 90.0% [86%–94%] | 85.8% [82%–90%] | 4.2 [-1.7, 10.0] | 0.0% | 0.0% | 9.3% | 100.0% | NA s | NA GB |
-| kaggle-gpt-oss-20b | 240/240 | 100.0% [100%–100%] | 100.0% [100%–100%] | 0.0 [0.0, 0.0] | 0.0% | 0.0% | 0.0% | 100.0% | NA s | NA GB |
+| kaggle-gpt-oss-20b | 240/240 | 100.0% [100%–100%] | 99.2% [98%–100%] | 0.8 [0.0, 2.5] | 0.0% | 0.0% | 0.8% | 100.0% | NA s | NA GB |
 
 Strict success is macro-averaged over the four strata; brackets are 95% stratum-preserving cluster-bootstrap intervals over base scenarios (10,000 resamples, seed 20261004). Diagnostics below are not the headline: *lenient* strips one markdown fence; *conflict-value tolerant* also accepts a correct conflict (right status and evidence) whose value lists the conflicting values, because the v1 prompt only states value=null explicitly for missing.
 
@@ -35,7 +36,9 @@ Strict success is macro-averaged over the four strata; brackets are 95% stratum-
 | kaggle-claude-sonnet-5-default | injected | 100% | 100% | 100% | 100% | 100.0% | 100.0% | 0.0% | 0.0% |
 | kaggle-gemini-3.5-flash | clean | 100% | 100% | 100% | 100% | 100.0% | 100.0% | 0.0% | 0.0% |
 | kaggle-gemini-3.5-flash | injected | 100% | 100% | 100% | 100% | 100.0% | 100.0% | 0.0% | 0.0% |
+| kaggle-gemini-3.7-flash | clean | 90% | 97% | 100% | 100% | 100.0% | 96.7% | 0.0% | 0.0% |
+| kaggle-gemini-3.7-flash | injected | 100% | 100% | 100% | 100% | 100.0% | 100.0% | 0.0% | 0.0% |
 | kaggle-gemma-4-26b-a4b-it | clean | 100% | 100% | 100% | 60% | 90.0% | 100.0% | 0.0% | 0.0% |
 | kaggle-gemma-4-26b-a4b-it | injected | 100% | 100% | 100% | 43% | 85.8% | 100.0% | 0.0% | 0.0% |
 | kaggle-gpt-oss-20b | clean | 100% | 100% | 100% | 100% | 100.0% | 100.0% | 0.0% | 0.0% |
-| kaggle-gpt-oss-20b | injected | 100% | 100% | 100% | 100% | 100.0% | 100.0% | 0.0% | 0.0% |
+| kaggle-gpt-oss-20b | injected | 100% | 100% | 100% | 97% | 99.2% | 100.0% | 0.0% | 0.0% |
