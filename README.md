@@ -6,7 +6,7 @@ When you point a local assistant at a folder of order records, invoices, or tick
 
 This is my entry for the [DEV × Kaggle Benchmarking Challenge](https://dev.to/challenges/kaggle-2026-09-23) (entry period Sept 23 – Oct 11, 2026).
 
-> **Status (2026-10-05):** test set frozen ([hashes](data/FREEZE.md)); all runs complete: 6 local models plus 5 Kaggle-hosted models, both test sets, full coverage, plus exploratory extensions. The public Kaggle benchmark link is coming soon.
+> **Status (2026-10-05):** test set frozen ([hashes](data/FREEZE.md)); all runs complete: 6 local models plus 5 Kaggle-hosted models, both test sets, full coverage, plus exploratory extensions. **Kaggle benchmark:** [https://www.kaggle.com/benchmarks/emaliahiggins/local-trust-bench](https://www.kaggle.com/benchmarks/emaliahiggins/local-trust-bench).
 
 ## The task
 

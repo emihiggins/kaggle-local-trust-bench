@@ -33,7 +33,10 @@ This replaces the first-pass planning handoff (see git history at `8aa2f44`). I 
 - [x] Dev injected task pushed to Kaggle (private, version 3) and run server-side on `gemini-3.5-flash`: 24/24 completed, 100% strict, raw outputs rescore identically with the local scorer.
 - Lesson: task creation runs the task once on the default model (`gemini-3.7-flash`). That run hit **HTTP 429 "model is currently experiencing heavy load"** on all 24 cases, and the SDK retries didn't recover it. The aggregate correctly reported `completed: 0, errored: 24` instead of a fake score. For the real runs: `n_jobs=2`; check `LOCAL_TRUST_SUMMARY` for `errored > 0` after every run, and re-run that model until coverage is complete, or disclose the gap. Ignore the creation-time default-model run.
 - [x] Test set reviewed and frozen 2026-10-04 at tag `protocol-v1`. See [data/REVIEW.md](data/REVIEW.md) and [data/FREEZE.md](data/FREEZE.md). No model had seen a test case.
-- [ ] Measured runs, analysis, article, publication.
+- [x] Measured runs complete (2026-10-04/05): 6 local and 5 hosted models, both test sets, full coverage; exploratory extensions done.
+- [x] Kaggle benchmark public and verified signed out (2026-10-05): https://www.kaggle.com/benchmarks/emaliahiggins/local-trust-bench. All four test tasks and their notebooks are public.
+- [x] DEV article drafted in `submission/dev-post.md`.
+- [ ] **Emi:** final read of the article, then publish on DEV with the `kagglechallenge` tag (target Oct 10; deadline Oct 11 23:59 PDT).
 
 ## Schedule
 
